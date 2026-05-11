@@ -123,7 +123,7 @@ export async function resetPasswordAction(formData: FormData): Promise<AuthActio
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
-    redirectTo: `${baseUrl}/atualizar-senha`,
+    redirectTo: `${baseUrl}/api/auth/callback?next=/atualizar-senha`,
   });
 
   if (error) {
