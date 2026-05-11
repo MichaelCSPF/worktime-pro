@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useState, useEffect } from 'react';
+import { useActionState, useState } from 'react';
 import { changePasswordAction, type AuthActionResult } from '@/modules/auth/application/actions';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
