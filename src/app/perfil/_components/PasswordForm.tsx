@@ -25,7 +25,11 @@ export function PasswordForm() {
     setIsLoading(true);
     setMessage(null);
 
-    const result = await changePasswordAction(password);
+    const formData = new FormData();
+    formData.append('password', password);
+    formData.append('confirmPassword', confirm);
+
+    const result = await changePasswordAction(formData);
 
     if (result.success) {
       setMessage({ type: 'success', text: 'Senha alterada com sucesso!' });
