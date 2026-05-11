@@ -22,6 +22,7 @@ import {
   loginSchema,
   registerSchema,
   resetPasswordSchema,
+  updatePasswordSchema,
 } from '@/modules/auth/domain/validation';
 
 const userRepo = new SupabaseUserRepository();
