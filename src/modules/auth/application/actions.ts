@@ -91,11 +91,11 @@ export async function registerAction(formData: FormData): Promise<AuthActionResu
   });
 
   if (error) {
-    console.error('Erro no Supabase Auth (SignUp):', error);
+    console.error('Auth Registration Error:', error);
     if (error.message.includes('already registered')) {
       return { success: false, error: 'Este email já está cadastrado' };
     }
-    return { success: false, error: `Erro ao criar conta: ${error.message}` };
+    return { success: false, error: 'Erro ao criar conta. Tente novamente.' };
   }
 
   return { success: true };
