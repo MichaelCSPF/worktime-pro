@@ -173,9 +173,21 @@ export async function updateProfileAction(data: {
 /**
  * Alterar Senha
  */
-export async function changePasswordAction(password: string): Promise<AuthActionResult> {
+export async function changePasswordAction(formData: FormData): Promise<AuthActionResult> {
+  const rawData = {
+    password: formData.get('password'),
+    confirmPassword: formData.get('confirmPassword'),
+  };
+
+  const parsed = updatePasswordSchema.safeParse(rawData);
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.errors[0].message };
+  }
+
   const supabase = await createClient();
-  const { error } = await supabase.auth.updateUser({ password });
+  const { error } = await supabase.auth.updateUser({ 
+    password: parsed.data.password 
+  });
 
   if (error) {
     return { success: false, error: error.message };
